@@ -6,4 +6,6 @@
 
 Команды
 
-git clone git@github.com:USERNAME/REPOSITORYNAME.git - клонирование 
+<strong>git clone git@github.com:USERNAME/REPOSITORYNAME.git</strong> - клонирование репозитория с GitHub. нужно находиться в той директории, куда хочешь клонировать
+
+<strong>git checkout -b NAME_OF_THE_BRANCH</strong> - добавление новой ветки и переключение на нее. чтобы просто переключиться между ветками, не нужно писать -b — только <strong>git checkout NAME_OF_THE_BRANCH</strong>
