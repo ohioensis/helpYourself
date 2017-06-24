@@ -41,33 +41,19 @@
 ## Организация кода стилей
 
 `| - fonts/
-
  | - img/
-
  | - less/
-
  | | - blocks/
-
  | | | - main-nav.less
-
  | | | - news.less
-
  | | | - page-footer.less
-
  | | | - page-main.less
-
  | | - global // правда не факт, что в при БЭМе могут быть какие-то глобальные стили
-
  | | | - fonts.less
-
  | | | - forms.less
-
  | | | - layout.less
-
  | | - mixins.less
-
  | | - style.less
- 
  | | - variables.less`
 
 
