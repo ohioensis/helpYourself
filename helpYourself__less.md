@@ -40,21 +40,7 @@
 
 ## Организация кода стилей
 
-`| - fonts/
- | - img/
- | - less/
- | | - blocks/
- | | | - main-nav.less
- | | | - news.less
- | | | - page-footer.less
- | | | - page-main.less
- | | - global // правда не факт, что в при БЭМе могут быть какие-то глобальные стили
- | | | - fonts.less
- | | | - forms.less
- | | | - layout.less
- | | - mixins.less
- | | - style.less
- | | - variables.less`
+Папка `less/`, а в ней папка `blocks/`, где лежат отдельные файлы для каждого блока. И прямо в папке `less/` файлы `mixins.less` (примеси для определенных свойств или наборов свойств), `variables.less` (объявляются все переменные) и главный - `style.less`, куда импортированы все остальные файлы.
 
 
 
