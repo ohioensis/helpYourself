@@ -40,7 +40,7 @@
 
 ## Организация кода стилей
 
-'| - fonts/
+`| - fonts/
  | - img/
  | - less/
  | | - blocks/
@@ -54,7 +54,7 @@
  | | | - layout.less
  | | - mixins.less
  | | - style.less
- | | - variables.less'
+ | | - variables.less`
 
 
 
