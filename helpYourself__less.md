@@ -62,7 +62,8 @@
 
 В файле Gruntfile.js пишется следующий код:
 
-`module.exports = function(grunt) {
+```
+module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less'); // эту строчку копируем из readme к найденному плагину
 	grunt.initConfig({
 		less: { 							// название конфигурации
@@ -73,7 +74,8 @@
 			}
 		}
 	});
-};`
+};
+```
 
 
 
