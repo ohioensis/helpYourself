@@ -63,13 +63,13 @@
 В файле Gruntfile.js пишется следующий код:
 
 `module.exports = function(grunt) {
-  grunt.loadNpmTasks('grunt-contrib-less'); // эту строчку копируем из readme к найденному плагину
+	grunt.loadNpmTasks('grunt-contrib-less'); // эту строчку копируем из readme к найденному плагину
 
-  grunt.initConfig({
-	less: { 							// название конфигурации
-	  style: {						// название процесса, придумываем сами
-		files: {
-		  "css/style.css" : "less/style.less" // путь (куда) <== (откуда)
+	grunt.initConfig({
+		less: { 							// название конфигурации
+			style: {						// название процесса, придумываем сами
+				files: {
+					"css/style.css" : "less/style.less" // путь (куда) <== (откуда)
  				}
 			}
 		}
