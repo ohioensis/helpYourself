@@ -50,4 +50,33 @@
 
 **Важно:** Устанавливать Grunt в директорию проекта!
 
+`npm i -g grunt grunt-cli` - установка Grunt ГЛОБАЛЬНО 
+
+`npm i grunt grunt-cli` - установка Grunt в директорию проекта
+
+`npm init` - создание файла package.json
+
+После этого создается файл Gruntfile.js в директории проекта (название с заглавной буквы — обязательно).
+
+Найти нужный плагин на сайте gruntjs.com и установить его через консоль.
+
+В файле Gruntfile.js пишется следующий код:
+
+`module.exports = function(grunt) {
+	grunt.loadNpmTasks('grunt-contrib-less'); // эту строчку копируем из readme к найденному плагину
+
+	grunt.initConfig({
+		less: { 							// название конфигурации
+			style: {						// название процесса, придумываем сами
+				files: {
+					"css/style.css" : "less/style.less" // путь (куда) <== (откуда)
+ 				}
+			}
+		}
+	});
+
+};`
+
+
+
 
