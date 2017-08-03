@@ -64,73 +64,76 @@
 
 ```
 module.exports = function(grunt) {
-	grunt.loadNpmTasks('grunt-contrib-less'); // эту строчку копируем из readme к найденному плагину
-	grunt.initConfig({
-		less: { 							// название конфигурации
-			style: {						// название процесса, придумываем сами
-				files: {
-					"css/style.css" : "less/style.less" // путь (куда) <== (откуда)
- 				}
-			}
-		}
-	});
+  grunt.loadNpmTasks('grunt-contrib-less'); // эту строчку копируем из readme к найденному плагину
+
+  grunt.initConfig({
+	less: { 							// название конфигурации
+	  style: {						// название процесса, придумываем сами
+		files: {
+		  "css/style.css" : "less/style.less" // путь (куда) <== (откуда)
+ 		}
+	  }
+	}
+  });
 };
 ```
 
 ### Конфигурация сборки стилей
 
+**NB!** Все таски, которые подключаются в `Gruntfile.js` предварительно должны быть установлены в виде плагинов в папку проекта.
+
 ```
 module.exports = function(grunt) {
-	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks("grunt-browser-sync");	**// подключения таска для живого сервера разработки**
-	grunt.loadNpmTasks("grunt-contrib-watch");	**//  подключение таска для слежения за изменениями**
-	grunt.loadNpmTasks("grunt-postcss");	**// подключение таска для автопрефиксера** 
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks("grunt-browser-sync");	// подключения таска для живого сервера разработки
+  grunt.loadNpmTasks("grunt-contrib-watch");	//  подключение таска для слежения за изменениями
+  grunt.loadNpmTasks("grunt-postcss");	// подключение таска для автопрефиксера
 
-	grunt.initConfig({
-		less: { 							
-			style: {						
-				files: {
-					"css/style.css" : "less/style.less" 
+  grunt.initConfig({
+	less: { 							
+	  style: {						
+		files: {
+		  "css/style.css" : "less/style.less" 
  				}
 			}
 		},
 
-		postcss: {
-			options: {
-				processors: [
-					require("autoprefixer")({browsers:
-						[
-						"last 1 version",
-						"last 2 Chrome versions",
-						"last 2 Firefox versions",
-						"last 2 Opera versions",
-						"last 2 Edge versions"
-						]
+	postcss: {
+	  options: {
+		processors: [
+		  require("autoprefixer")({browsers:
+			[
+			"last 1 version",
+			"last 2 Chrome versions",
+			"last 2 Firefox versions",
+			"last 2 Opera versions",
+			"last 2 Edge versions"
+			]
 
-					})]
-				},
-			style: {src: "css/*.css"}
+		  })]
+	    },
+	  style: {src: "css/*.css"}
+	},
+
+	watch: {
+	  style: {
+		files: ["less/**/*.less"],
+		tasks: ["less", "postcss"]
+	  }
+	},
+
+	browserSync: {
+	  server: {
+	    bsFiles: {
+		  src: ["*.html", "css/*.css"]
 		},
-
-		watch: {
-			style: {
-				files: ["less/**/*.less"],
-				tasks: ["less", "postcss"]
-			}
-		},
-
-		browserSync: {
-			server: {
-				bsFiles: {
-					src: ["*.html", "css/*.css"]
-				},
-				options: {
-					server: "."
-				}
-			}
+		options: {
+		  server: "."
 		}
+	  }
+    }
 
-	});
+  });
 };
 ```
 Для того, чтобы "автоматизировать автоматизацию" (загружать таски), в Grunt тоже есть плагин.
@@ -142,53 +145,53 @@ module.exports = function(grunt) {
 ```
 module.exports = function(grunt) {
 	
-	require("load-grunt-tasks)(grunt);
+  require("load-grunt-tasks)(grunt);
 
-	grunt.initConfig({
-		less: { 							
-			style: {						
-				files: {
-					"css/style.css" : "less/style.less" 
- 				}
-			}
+  grunt.initConfig({
+	less: { 							
+	  style: {						
+		files: {
+		  "css/style.css" : "less/style.less" 
+ 		}
+	  }
+	},
+
+	postcss: {
+	  options: {
+		processors: [
+		  require("autoprefixer")({browsers:
+			[
+			"last 1 version",
+			"last 2 Chrome versions",
+			"last 2 Firefox versions",
+			"last 2 Opera versions",
+			"last 2 Edge versions"
+			]
+
+		  })]
 		},
+	  style: {src: "css/*.css"}
+	},
 
-		postcss: {
-			options: {
-				processors: [
-					require("autoprefixer")({browsers:
-						[
-						"last 1 version",
-						"last 2 Chrome versions",
-						"last 2 Firefox versions",
-						"last 2 Opera versions",
-						"last 2 Edge versions"
-						]
+	watch: {
+	  style: {
+		files: ["less/**/*.less"],
+		tasks: ["less", "postcss"]
+	  }
+    },
 
-					})]
-				},
-			style: {src: "css/*.css"}
+	browserSync: {
+	  server: {
+		bsFiles: {
+		  src: ["*.html", "css/*.css"]
 		},
+	  	options: {
+		  server: "."
+	    }
+	  }
+	}
 
-		watch: {
-			style: {
-				files: ["less/**/*.less"],
-				tasks: ["less", "postcss"]
-			}
-		},
-
-		browserSync: {
-			server: {
-				bsFiles: {
-					src: ["*.html", "css/*.css"]
-				},
-				options: {
-					server: "."
-				}
-			}
-		}
-
-	});
+  });
 };
 ```
 

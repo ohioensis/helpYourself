@@ -30,3 +30,49 @@ SVG можно вставлять инлайново (тегом прям в HTM
 где  `xlink:href="#icon-arr-right"` — указание id нужного элемента из спрайта.
 
 Техника оптимизации: вставка кода <svg> из отдельного файла через Ajax.
+
+## Автоматизация сборки SVG-спрайтов
+
+В Grunt используется плагин `grunt-svgstore`, который сначала подключается в папку проекта, а затем код добавляется в файл `Gruntfile.js`:
+
+```
+module.exports = function(grunt) {
+  require("load-grunt-tasks")(grunt);
+
+  grunt.initConfig({
+
+    svgstore: {
+      options: {
+      	svg: {
+      	  style: "display: none"
+      	}
+      },
+      symbols: {
+      	files: {
+      	  "img/symbols.svg":["img/icons/*.svg"]
+      	}
+      }
+    }
+  });
+};
+```
+
+Еще существует плагин `grunt-svgmin`, чтобы минифицировать спрайт. Устанавливается, а затем вот так подключается:
+
+```
+module.exports = function(grunt) {
+  require("load-grunt-tasks")(grunt);
+
+  grunt.initConfig({
+
+    svgmin: {
+      symbols: {
+      	files: [{
+      	  expand: true,
+      	  src: ["img/icons/*.svg"]
+      	}]
+      }
+    }
+  });
+};
+```
