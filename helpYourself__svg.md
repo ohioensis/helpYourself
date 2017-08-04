@@ -76,3 +76,39 @@ module.exports = function(grunt) {
   });
 };
 ```
+
+**Важно!** Таски `svgstore` и `svgmin` надо объединить. Делается это с помощью команды для запуска (см. последнюю строку кода):
+
+```
+module.exports = function(grunt) {
+  require("load-grunt-tasks")(grunt);
+
+  grunt.initConfig({
+
+    svgstore: {
+      options: {
+      	svg: {
+      	  style: "display: none"
+      	}
+      },
+      symbols: {
+      	files: {
+      	  "img/symbols.svg":["img/icons/*.svg"]
+      	}
+      }
+    },
+
+    svgmin: {
+      symbols: {
+      	files: [{
+      	  expand: true,
+      	  src: ["img/icons/*.svg"]
+      	}]
+      }
+    }
+  });
+
+  grunt.registerTask("symbols", ["svgmin", "svgstore"]);
+};
+```
+После этого нужно ввести в консоли в папке проекта `grunt symbols`
